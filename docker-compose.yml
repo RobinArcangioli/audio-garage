@@ -1,7 +1,7 @@
 # All Gradle work runs here. Use the Makefile rather than calling this directly:
 # it exports HOST_UID/HOST_GID so files written into the repo belong to the host user.
 x-android: &android
-  image: audio-garage-builder:1
+  image: audio-garage-builder:2
   build:
     context: docker
     dockerfile: Dockerfile
@@ -10,10 +10,6 @@ x-android: &android
   volumes:
     - .:/workspace
     - gradle-cache:/gradle-cache
-  environment:
-    # Passed through only if set on the host (e.g. proxy settings for the JVM).
-    - JAVA_TOOL_OPTIONS
-    - GRADLE_OPTS
 
 services:
   build:

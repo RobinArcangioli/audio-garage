@@ -12,13 +12,15 @@ Ubuntu 24.04 avec uniquement : Docker (plugin `docker compose`), Git, `make`, `a
 
 | Commande | Effet |
 |---|---|
-| `make image` | Construit l'image `audio-garage-builder:1` (JDK 17 + SDK Android). Automatique au premier `make` sinon. |
+| `make image` | Construit l'image `audio-garage-builder:2` (JDK 17 + SDK Android). Automatique au premier `make` sinon. |
 | `make build` | Compile tous les modules (sources debug + tests). |
 | `make test` | Tests unitaires JVM. |
 | `make lint` | Android lint (échoue sur toute erreur). |
 | `make apk` | APK debug → `app/build/outputs/apk/debug/app-debug.apk`. |
 | `make install` | Installe l'APK sur l'appareil connecté via l'`adb` de l'hôte et lance l'app. |
 | `make bench` | Harnais de benchmark des extracteurs (étape 0.10, pas encore implémenté). |
+| `make probe ARGS="..."` | Outil JVM de mesure contre YouTube réel : `sample <playlistUrl> [n] [scan]`, `streams <videoId>`, `fetch <dir> <videoId>...` (CSV `fetch.csv`). |
+| `make inspect DIR=...` | `ffprobe` sur chaque `.m4a` du dossier : codec, durée, débit réel, MP4 fragmenté ou non, test de seek à 80 %. |
 | `make shell` / `make clean` | Shell dans le conteneur / suppression des sorties de build. |
 
 Les conteneurs tournent avec l'UID/GID de l'utilisateur hôte (`HOST_UID`/`HOST_GID`, exportés par le Makefile) : aucun fichier du dépôt n'appartient à root. Le cache Gradle est dans le volume nommé `audio-garage_gradle-cache` ; le SDK est intégré à l'image.
@@ -29,12 +31,6 @@ USB : activer les options développeur et le débogage USB, brancher, accepter l
 Wi-Fi (Android 11+) : options développeur → Débogage sans fil → Associer avec un code, puis `adb pair IP:PORT` et `adb connect IP:PORT`.
 
 L'APK debug est signé avec `keystore/debug.keystore`, clé de debug **non secrète** versionnée volontairement : la signature est identique d'un build à l'autre, donc `adb install -r` met à jour l'app sans la désinstaller.
-
-## Configuration réseau particulière (proxy, CA d'entreprise)
-
-Sans proxy, rien à faire. Derrière un proxy TLS :
-- déposer les certificats `*.crt` dans `docker/certs/` (ignorés par git), ils sont ajoutés au magasin système et au `cacerts` Java de l'image ;
-- passer la configuration propre à la machine dans un `docker-compose.override.yml` (ignoré par git), par exemple `JAVA_TOOL_OPTIONS` avec `-Dhttps.proxyHost/-Dhttps.proxyPort` et l'argument de build `SDKMANAGER_OPTS`.
 
 ## Stack (versions dans `gradle/libs.versions.toml`)
 

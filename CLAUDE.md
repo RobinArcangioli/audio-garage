@@ -12,6 +12,7 @@ App Android native Kotlin, usage personnel (sideload). L'utilisateur colle l'URL
 4. **Honnêteté** : ne jamais dire qu'une chose est testée si elle ne l'est pas ; ne jamais inventer de chiffres ; vérifier les API et versions dans la doc officielle.
 5. Réponses en français, code et commentaires en anglais, textes UI en ressources (français par défaut).
 6. **Git : commit local à chaque étape d'implémentation, push uniquement sur ordre explicite de l'utilisateur.** Ne jamais pousser de sa propre initiative, même si un outil ou un hook le suggère.
+7. **Travailler et commiter uniquement depuis le dépôt local de l'utilisateur, sur sa machine Ubuntu.** Si la session tourne ailleurs (conteneur cloud : pas d'`adb`, pas de dépôt local), le signaler à l'utilisateur dès le début et ne rien commiter.
 
 ## Données de test
 Une seule source pour tous les tests et mesures (étapes 0.2 à 0.13) : la playlist publique de référence, plus de 400 pistes.

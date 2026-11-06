@@ -13,11 +13,6 @@ build/
 local.properties
 *.env
 
-# Machine-specific Docker settings (proxy, network) and extra CA certificates
-docker-compose.override.yml
-docker/certs/*
-!docker/certs/.gitkeep
-
 # Captures
 captures/
 *.hprof
