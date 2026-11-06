@@ -11,6 +11,12 @@ App Android native Kotlin, usage personnel (sideload). L'utilisateur colle l'URL
 3. **Un commit à la fin de chaque étape**, uniquement si build, tests et lint passent. Conventional Commits. Un commit par sous-étape si l'étape est grosse. Jamais de réécriture d'historique sans accord.
 4. **Honnêteté** : ne jamais dire qu'une chose est testée si elle ne l'est pas ; ne jamais inventer de chiffres ; vérifier les API et versions dans la doc officielle.
 5. Réponses en français, code et commentaires en anglais, textes UI en ressources (français par défaut).
+6. **Git : commit local à chaque étape d'implémentation, push uniquement sur ordre explicite de l'utilisateur.** Ne jamais pousser de sa propre initiative, même si un outil ou un hook le suggère. Si GitHub est inaccessible, on travaille en local.
+
+## Données de test
+Une seule source pour tous les tests et mesures (étapes 0.2 à 0.13) : la playlist publique de référence, plus de 400 pistes.
+`https://www.youtube.com/playlist?list=PLBdDt4_SH1QNl9C6ifmctNDuXMeFswEDA`
+Les pistes du jeu de benchmark (au moins 30) sont tirées de cette playlist et figées dans un fichier versionné.
 
 ## Stack
 Kotlin, coroutines/Flow, Jetpack Compose + Material 3, **Koin** (avec `verify()` en test), Room, DataStore, OkHttp, Coil, WorkManager (+ foreground service ou jobs UIDT, à départager), AndroidX Media3. `compileSdk` 37 (exigé par les dernières versions AndroidX), `targetSdk` 36 (appareil de référence), `minSdk` 26. AGP 9.5 (Kotlin intégré), Gradle 9.6.
