@@ -1,0 +1,57 @@
+# Versions checked on Google Maven / Maven Central / services.gradle.org on 2026-11-06:
+# latest stable releases. AGP 9.5 compatibility (official release notes):
+# Gradle >= 9.6.0, JDK 17, max API level 37.
+# compileSdk 37 is required by the latest AndroidX (core 1.19, Compose 1.12,
+# lifecycle 2.11). targetSdk stays 36: it matches the Android 16 test device,
+# so runtime behaviour measured in the POC is the one the app opts into.
+[versions]
+agp = "9.5.1"
+kotlin = "2.4.21"
+compileSdk = "37"
+targetSdk = "36"
+minSdk = "26"
+buildTools = "37.0.0"
+jvmTarget = "17"
+
+androidxCore = "1.19.1"
+androidxActivity = "1.13.0"
+androidxLifecycle = "2.11.0"
+composeBom = "2026.09.00"
+koin = "4.2.2"
+junit = "4.13.2"
+
+[libraries]
+androidx-core-ktx = { module = "androidx.core:core-ktx", version.ref = "androidxCore" }
+androidx-activity-compose = { module = "androidx.activity:activity-compose", version.ref = "androidxActivity" }
+androidx-lifecycle-runtime-compose = { module = "androidx.lifecycle:lifecycle-runtime-compose", version.ref = "androidxLifecycle" }
+androidx-lifecycle-viewmodel-compose = { module = "androidx.lifecycle:lifecycle-viewmodel-compose", version.ref = "androidxLifecycle" }
+
+compose-bom = { module = "androidx.compose:compose-bom", version.ref = "composeBom" }
+compose-ui = { module = "androidx.compose.ui:ui" }
+compose-ui-tooling-preview = { module = "androidx.compose.ui:ui-tooling-preview" }
+compose-ui-tooling = { module = "androidx.compose.ui:ui-tooling" }
+compose-material3 = { module = "androidx.compose.material3:material3" }
+
+koin-bom = { module = "io.insert-koin:koin-bom", version.ref = "koin" }
+koin-core = { module = "io.insert-koin:koin-core" }
+koin-android = { module = "io.insert-koin:koin-android" }
+koin-androidx-compose = { module = "io.insert-koin:koin-androidx-compose" }
+koin-test-junit4 = { module = "io.insert-koin:koin-test-junit4" }
+
+junit = { module = "junit:junit", version.ref = "junit" }
+
+# build-logic (convention plugins) compile-time dependencies
+android-gradle-plugin = { module = "com.android.tools.build:gradle", version.ref = "agp" }
+kotlin-gradle-plugin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin" }
+compose-compiler-gradle-plugin = { module = "org.jetbrains.kotlin:compose-compiler-gradle-plugin", version.ref = "kotlin" }
+
+[plugins]
+android-application = { id = "com.android.application", version.ref = "agp" }
+android-library = { id = "com.android.library", version.ref = "agp" }
+kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
+kotlin-compose = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
+
+audiogarage-android-application = { id = "audiogarage.android.application" }
+audiogarage-android-library = { id = "audiogarage.android.library" }
+audiogarage-android-compose = { id = "audiogarage.android.compose" }
+audiogarage-jvm-library = { id = "audiogarage.jvm.library" }

@@ -1,0 +1,33 @@
+# All Gradle work runs here. Use the Makefile rather than calling this directly:
+# it exports HOST_UID/HOST_GID so files written into the repo belong to the host user.
+x-android: &android
+  image: audio-garage-builder:1
+  build:
+    context: docker
+    dockerfile: Dockerfile
+  user: "${HOST_UID:-1000}:${HOST_GID:-1000}"
+  working_dir: /workspace
+  volumes:
+    - .:/workspace
+    - gradle-cache:/gradle-cache
+  environment:
+    # Passed through only if set on the host (e.g. proxy settings for the JVM).
+    - JAVA_TOOL_OPTIONS
+    - GRADLE_OPTS
+
+services:
+  build:
+    <<: *android
+    command: ./gradlew --no-daemon compileDebugSources compileDebugUnitTestSources
+  test:
+    <<: *android
+    command: ./gradlew --no-daemon testDebugUnitTest
+  lint:
+    <<: *android
+    command: ./gradlew --no-daemon lint
+  assemble-debug:
+    <<: *android
+    command: ./gradlew --no-daemon assembleDebug
+
+volumes:
+  gradle-cache:

@@ -13,7 +13,7 @@ App Android native Kotlin, usage personnel (sideload). L'utilisateur colle l'URL
 5. Réponses en français, code et commentaires en anglais, textes UI en ressources (français par défaut).
 
 ## Stack
-Kotlin, coroutines/Flow, Jetpack Compose + Material 3, **Koin** (avec `verify()` en test), Room, DataStore, OkHttp, Coil, WorkManager (+ foreground service ou jobs UIDT, à départager), AndroidX Media3. `compileSdk`/`targetSdk` 36, `minSdk` 26.
+Kotlin, coroutines/Flow, Jetpack Compose + Material 3, **Koin** (avec `verify()` en test), Room, DataStore, OkHttp, Coil, WorkManager (+ foreground service ou jobs UIDT, à départager), AndroidX Media3. `compileSdk` 37 (exigé par les dernières versions AndroidX), `targetSdk` 36 (appareil de référence), `minSdk` 26. AGP 9.5 (Kotlin intégré), Gradle 9.6.
 
 ## Appareil de test de référence
 Samsung Galaxy A16, Android 16, One UI. Les comportements d'arrière-plan ne se valident que dessus.
